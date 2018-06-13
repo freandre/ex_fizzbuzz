@@ -75,7 +75,7 @@ Just run `mix test` to run the tests.
 ## Code quality
 To enforce code quality the [Dialyzer](http://erlang.org/doc/man/dialyzer.html)
 tool has been created for the Erlang plateform. Fortunately its Elixir
-counterpart [Dialyxir](https://github.com/jeremyjh/dialyxir) has also be made.
+counterpart [Dialyxir](https://github.com/jeremyjh/dialyxir) has also been made.
 This can be run with the `mix dialyzer` command.
 
 ## Deployment
@@ -90,5 +90,6 @@ embbeding the Erlang runtime.
       Foreground: _build/prod/rel/ex_fizzbuzz/bin/ex_fizzbuzz.run foreground
       Daemon: _build/prod/rel/ex_fizzbuzz/bin/ex_fizzbuzz.run start`
 
- Never the less, Distillery keeps the Erlang ability to hot deploy upgrade
- without stopping the application... neat isn't it ? :)
+ Never the less, Distillery keeps the Erlang ability to
+ [hot deploy](https://hexdocs.pm/distillery/upgrades-and-downgrades.html#content)
+ upgrade without stopping the application... neat isn't it ? :)
