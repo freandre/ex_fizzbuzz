@@ -1,0 +1,13 @@
+{application,ex_fizzbuzz,
+             [{applications,[kernel,stdlib,elixir,logger,poison,cowboy,plug]},
+              {description,"ex_fizzbuzz"},
+              {modules,['Elixir.Controllers.FizzBuzz',
+                        'Elixir.Controllers.FizzBuzz.LimitError',
+                        'Elixir.Controllers.FizzBuzz.NegativeNumberError',
+                        'Elixir.Controllers.FizzBuzz.TypeError',
+                        'Elixir.ExFizzbuzz.Application',
+                        'Elixir.ExFizzbuzz.Router','Elixir.Helpers.Fizzbuzz']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {extra_applications,[logger]},
+              {mod,{'Elixir.ExFizzbuzz.Application',[cowboy,plug]}}]}.
