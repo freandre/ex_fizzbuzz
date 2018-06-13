@@ -191,6 +191,12 @@ defmodule ExFizzbuzzTest do
                  fn -> Controllers.FizzBuzz.fizzbuzz(%{"int1" => "toto"}) end
   end
 
+  test "Exception on type float" do
+    assert_raise Controllers.FizzBuzz.TypeError,
+                 "int1 is not a valid integer.",
+                 fn -> Controllers.FizzBuzz.fizzbuzz(%{"int1" => 80.80}) end
+  end
+
   test "Exception on negative number" do
     assert_raise Controllers.FizzBuzz.NegativeNumberError,
                  "int2 is negative, which is not allowed.",

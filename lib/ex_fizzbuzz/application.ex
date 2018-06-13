@@ -7,11 +7,7 @@ defmodule ExFizzbuzz.Application do
 
   def start(_type, _args) do
     # Read port from envirronement variable
-    port =
-      case System.get_env("FIZZBUZZ_PORT") do
-        nil -> 8080
-        port -> port
-      end
+    port = get_port()
 
     # List all child processes to be supervised
     children = [
@@ -22,5 +18,35 @@ defmodule ExFizzbuzz.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ExFizzbuzz.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  # Read port from envirronment variable
+  defp get_port() do
+    case System.get_env("FIZZBUZZ_PORT") do
+      nil -> 8080
+      port -> port |> parse_port
+    end
+  end
+
+  # Parse port and ensure it is valid
+  defp parse_port(port) do
+    case Integer.parse(port) do
+      {port, ""} -> port |> validate_port
+      _ -> critical_issue("FIZZBUZZ_PORT is not a valid integer")
+    end
+  end
+
+  # Ensure port is valid
+  defp validate_port(port) when port < 0,
+    do: critical_issue("FIZZBUZZ_PORT is a negative integer")
+
+  defp validate_port(port) when port > 65_535, do: critical_issue("FIZZBUZZ_PORT is out of bound")
+  defp validate_port(port) when port < 1024, do: critical_issue("FIZZBUZZ_PORT is a root port")
+  defp validate_port(port), do: port
+
+  # Print an error message and stop the vm
+  defp critical_issue(message) do
+    IO.puts(message)
+    System.stop(1)
   end
 end

@@ -2,6 +2,11 @@ defmodule Helpers.Fizzbuzz do
   @defaults [int1: 3, string1: "fizz", int2: 5, string2: "buzz", limit: 100]
 
   @doc """
+    Return parameters defaults values
+  """
+  def get_defaults, do: @defaults
+
+  @doc """
   Regular fizz buzz helper:
   all multiples of int1 are replaced by string1,
   all multiples of int2 are replaced by string2,
@@ -18,11 +23,6 @@ defmodule Helpers.Fizzbuzz do
     1..limit
     |> Enum.map(&replace(&1, int1, string1, int2, string2))
   end
-
-  @doc """
-    Return parameters defaults values
-  """
-  def get_defaults, do: @defaults
 
   defp replace(num, int1, string1, int2, string2) when rem(num, int1 * int2) == 0,
     do: string1 <> string2

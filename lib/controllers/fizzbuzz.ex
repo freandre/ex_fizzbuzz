@@ -59,7 +59,7 @@ defmodule Controllers.FizzBuzz do
   defp convert_numeric(key, value, ref_value)
        when is_integer(ref_value) and is_bitstring(value) do
     case Integer.parse(value) do
-      {x, _} -> {key, x}
+      {x, ""} -> {key, x}
       _ -> {key, value}
     end
   end
