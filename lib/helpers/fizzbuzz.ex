@@ -24,8 +24,9 @@ defmodule Helpers.Fizzbuzz do
     |> Enum.map(&replace(&1, int1, string1, int2, string2))
   end
 
-  defp replace(num, int1, string1, int2, string2) when rem(num, int1 * int2) == 0,
-    do: string1 <> string2
+  defp replace(num, int1, string1, int2, string2)
+       when rem(num, int1) == 0 and rem(num, int2) == 0,
+       do: string1 <> string2
 
   defp replace(num, int1, string1, _int2, _string2) when rem(num, int1) == 0, do: string1
   defp replace(num, _int1, _string1, int2, string2) when rem(num, int2) == 0, do: string2
